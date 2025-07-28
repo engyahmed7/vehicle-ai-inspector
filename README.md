@@ -89,9 +89,9 @@ graph LR
 4. **Configure services**
    ```bash
    # Google Cloud Vision
-   export GOOGLE_APPLICATION_CREDENTIALS="path/to/credentials.json"
+   GOOGLE_APPLICATION_CREDENTIALS="path/to/credentials.json"
    
-   # Cloudinary (add to .env)
+   # Cloudinary
    CLOUDINARY_URL=cloudinary://api_key:api_secret@cloud_name
    ```
 
