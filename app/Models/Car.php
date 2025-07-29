@@ -7,15 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Car extends Model
 {
     protected $fillable = [
-        'vin',
-        'make',
-        'model',
-        'year',
+        'image_url',
+        'cloudinary_id',
+        'license_plate',
         'odometer',
-        'plate_number',
-        'registration_expiry',
-        'image_path',
+        'fuel_level',
     ];
+
 
     protected $casts = [
         'registration_expiry' => 'date',

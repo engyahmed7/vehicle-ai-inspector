@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Services\VisionService;
@@ -56,6 +57,14 @@ class CarImageController extends Controller
                     $data[$type]['odometer'] = $this->extractOdometer($fullText);
                     $data[$type]['fuel_level'] = $this->detectFuelLevel($cloudinaryUrl, $fullText);
                 }
+
+                Car::create([
+                    'image_url' => $cloudinaryUrl,
+                    'cloudinary_id' => $uploadResult['public_id'],
+                    'license_plate' => $data[$type]['license_plate'] ?? null,
+                    'odometer' => $data[$type]['odometer'] ?? null,
+                    'fuel_level' => $data[$type]['fuel_level'] ?? null,
+                ]);
             } catch (\Exception $e) {
                 $data[$type]['error'] = 'Processing error: ' . $e->getMessage();
             }

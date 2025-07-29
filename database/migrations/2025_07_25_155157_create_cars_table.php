@@ -13,15 +13,11 @@ return new class extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
-            $table->string('vin')->nullable();
-            $table->string('make')->nullable();
-            $table->string('model')->nullable();
-            $table->string('year')->nullable();
-            $table->string('odometer')->nullable();
-            $table->string('plate_number')->nullable();
-            $table->date('registration_expiry')->nullable();
-            $table->string('image_path')->nullable();
-
+            $table->string('image_url');
+            $table->string('cloudinary_id');
+            $table->string('license_plate')->nullable();
+            $table->integer('odometer')->nullable();
+            $table->integer('fuel_level')->nullable();
             $table->timestamps();
         });
     }
