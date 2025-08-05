@@ -79,6 +79,14 @@
                     <div class="file-name"></div>
                 </div>
 
+                <div class="upload-item type-detail" data-type="vin_area">
+                    <div class="upload-icon">📊</div>
+                    <label class="upload-label">VIN Area</label>
+                    <div class="upload-description">vin area and instrument panel</div>
+                    <input type="file" name="images[vin_area]" class="file-input" accept="image/*">
+                    <div class="file-name"></div>
+                </div>
+
                 <div class="upload-item type-detail" data-type="license_close">
                     <div class="upload-icon">🏷️</div>
                     <label class="upload-label">License Plate</label>

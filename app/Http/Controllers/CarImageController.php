@@ -53,10 +53,18 @@ class CarImageController extends Controller
                     $data[$type]['license_plate'] = $this->extractLicensePlate($fullText);
                 }
 
-                if ($type === 'dashboard') {
-                    $data[$type]['odometer'] = $this->extractOdometer($fullText);
-                    $data[$type]['fuel_level'] = $this->detectFuelLevel($cloudinaryUrl, $fullText);
+                if ($type === 'dashboard' || $type === 'vin_area') {
+                    $vin = $this->extractVin($fullText);
+
+                    if ($vin) {
+                        $data[$type]['vin'] = $vin;
+                        $vehicleData = $this->getVehicleDataFromVin($vin);
+                        $data[$type]['vehicle_info'] = $vehicleData;
+                    } else {
+                        $data[$type]['vin'] = 'Not found';
+                    }
                 }
+
 
                 Car::create([
                     'image_url' => $cloudinaryUrl,
@@ -172,5 +180,36 @@ class CarImageController extends Controller
         }
 
         return $result ?: 'Unknown';
+    }
+
+    private function extractVin($ocrText)
+    {
+        if (preg_match('/\b([A-HJ-NPR-Z0-9]{17})\b/', strtoupper($ocrText), $matches)) {
+            return $matches[1];
+        }
+        return null;
+    }
+
+    private function getVehicleDataFromVin($vin)
+    {
+        $url = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevinvalues/{$vin}?format=json";
+        $response = @file_get_contents($url);
+
+        if ($response === FALSE) {
+            return ['error' => 'Unable to reach NHTSA API'];
+        }
+
+        $data = json_decode($response, true);
+        if (!empty($data['Results'][0])) {
+            return [
+                'make' => $data['Results'][0]['Make'] ?? null,
+                'model' => $data['Results'][0]['Model'] ?? null,
+                'year' => $data['Results'][0]['ModelYear'] ?? null,
+                'body_class' => $data['Results'][0]['BodyClass'] ?? null,
+                'vehicle_type' => $data['Results'][0]['VehicleType'] ?? null,
+            ];
+        }
+
+        return ['error' => 'No vehicle data found for VIN'];
     }
 }

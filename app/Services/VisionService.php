@@ -16,6 +16,11 @@ class VisionService
 
     public function __construct()
     {
+       // dd for the environment variable GOOGLE_APPLICATION_CREDENTIALS
+        if (!getenv('GOOGLE_APPLICATION_CREDENTIALS')) {
+            throw new \Exception('GOOGLE_APPLICATION_CREDENTIALS environment variable is not set.');
+        }
+        Log::info('GOOGLE_APPLICATION_CREDENTIALS is set to: ' . getenv('GOOGLE_APPLICATION_CREDENTIALS'));
         $this->client = new ImageAnnotatorClient();
     }
 
