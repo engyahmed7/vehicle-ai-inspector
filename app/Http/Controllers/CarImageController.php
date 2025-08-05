@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Services\VisionService;
 use Cloudinary\Cloudinary;
+use Illuminate\Support\Facades\Log;
 
 class CarImageController extends Controller
 {
@@ -184,10 +185,29 @@ class CarImageController extends Controller
 
     private function extractVin($ocrText)
     {
-        if (preg_match('/\b([A-HJ-NPR-Z0-9]{17})\b/', strtoupper($ocrText), $matches)) {
-            return $matches[1];
+        $fullText = is_array($ocrText) ? implode(' ', $ocrText) : $ocrText;
+
+        // Debug OCR text
+        Log::info("VIN OCR Full Text: " . $fullText);
+
+        $cleanText = strtoupper($fullText);
+        $cleanText = str_replace(['O', 'Q', 'I'], ['0', '0', '1'], $cleanText);
+        $cleanText = preg_replace('/[^A-HJ-NPR-Z0-9]/', '', $cleanText);
+
+        preg_match_all('/[A-HJ-NPR-Z0-9]{17}/', $cleanText, $matches);
+
+        if (!empty($matches[0])) {
+            foreach ($matches[0] as $candidateVin) {
+                $vehicleData = $this->getVehicleDataFromVin($candidateVin);
+
+                if (!empty($vehicleData['make']) || !empty($vehicleData['model']) || !empty($vehicleData['year'])) {
+                    Log::info("Valid VIN found: " . $candidateVin);
+                    return $candidateVin;
+                }
+            }
         }
-        return null;
+
+        return $matches[0][0] ?? null;
     }
 
     private function getVehicleDataFromVin($vin)
