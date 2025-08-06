@@ -98,7 +98,7 @@ class CarImageController extends Controller
             }
         }
 
-        return response()->json($data);
+        return view('upload-results', compact('data'));
     }
 
     private function extractLicensePlate($ocrText)
