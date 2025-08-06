@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Exception;
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesRequest;
 use Google\Cloud\Vision\V1\Client\ImageAnnotatorClient;
@@ -16,11 +17,10 @@ class VisionService
 
     public function __construct()
     {
-       // dd for the environment variable GOOGLE_APPLICATION_CREDENTIALS
         if (!getenv('GOOGLE_APPLICATION_CREDENTIALS')) {
-            throw new \Exception('GOOGLE_APPLICATION_CREDENTIALS environment variable is not set.');
+            throw new Exception('GOOGLE_APPLICATION_CREDENTIALS environment variable is not set.');
         }
-        Log::info('GOOGLE_APPLICATION_CREDENTIALS is set to: ' . getenv('GOOGLE_APPLICATION_CREDENTIALS'));
+        Log::info('Initializing VisionService with Google Cloud credentials.', ['GOOGLE_APPLICATION_CREDENTIALS' => getenv('GOOGLE_APPLICATION_CREDENTIALS')]);
         $this->client = new ImageAnnotatorClient();
     }
 

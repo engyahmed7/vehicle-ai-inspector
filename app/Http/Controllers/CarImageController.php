@@ -61,6 +61,21 @@ class CarImageController extends Controller
                         $data[$type]['vin'] = $vin;
                         $vehicleData = $this->getVehicleDataFromVin($vin);
                         $data[$type]['vehicle_info'] = $vehicleData;
+
+                        $vehicleYear = (int)($vehicleData['basic_info']['Year'] ?? 0);
+                        $currentYear = now()->year;
+
+                        $data[$type]['vehicle_preview'] = $vehicleData['summary'] ?? 'No summary available';
+
+                        if ($vehicleYear > 0) {
+                            $vehicleAge = $currentYear - $vehicleYear;
+                            $isEligible = $vehicleAge < 10;
+                            $data[$type]['vehicle_age_eligible'] = $isEligible
+                                ? '✅ Eligible (' . $vehicleAge . ' years old)'
+                                : '❌ Not eligible (' . $vehicleAge . ' years old)';
+                        } else {
+                            $data[$type]['vehicle_age_eligible'] = 'Unknown (Missing model year)';
+                        }
                     } else {
                         $data[$type]['vin'] = 'Not found';
                     }
@@ -187,7 +202,6 @@ class CarImageController extends Controller
     {
         $fullText = is_array($ocrText) ? implode(' ', $ocrText) : $ocrText;
 
-        // Debug OCR text
         Log::info("VIN OCR Full Text: " . $fullText);
 
         $cleanText = strtoupper($fullText);
@@ -221,15 +235,47 @@ class CarImageController extends Controller
 
         $data = json_decode($response, true);
         if (!empty($data['Results'][0])) {
-            return [
-                'make' => $data['Results'][0]['Make'] ?? null,
-                'model' => $data['Results'][0]['Model'] ?? null,
-                'year' => $data['Results'][0]['ModelYear'] ?? null,
-                'body_class' => $data['Results'][0]['BodyClass'] ?? null,
-                'vehicle_type' => $data['Results'][0]['VehicleType'] ?? null,
-            ];
-        }
+            $result = $data['Results'][0];
 
+            $filterUnknown = function ($arr) {
+                return array_filter($arr, function ($v) {
+                    return $v !== 'Unknown';
+                });
+            };
+
+            $basicInfo = $filterUnknown([
+                'Make'         => $result['Make'] ?: 'Unknown',
+                'Model'        => $result['Model'] ?: 'Unknown',
+                'Year'         => $result['ModelYear'] ?: 'Unknown',
+                'Body Class'   => $result['BodyClass'] ?: 'Unknown',
+                'Vehicle Type' => $result['VehicleType'] ?: 'Unknown',
+            ]);
+            $specs = $filterUnknown([
+                'Fuel Type'           => $result['FuelTypePrimary'] ?: 'Unknown',
+                'Transmission Style'  => $result['TransmissionStyle'] ?: 'Unknown',
+                'Transmission Speeds' => $result['TransmissionSpeeds'] ?: 'Unknown',
+                'Seat Belts (All)'    => $result['SeatBeltsAll'] ?: 'Unknown',
+            ]);
+            $manufacturing = $filterUnknown([
+                'Company Name' => $result['PlantCompanyName'] ?: 'Unknown',
+                'Country'      => $result['PlantCountry'] ?: 'Unknown',
+            ]);
+
+            $summaryParts = [];
+            if (!empty($basicInfo['Make']))         $summaryParts[] = $basicInfo['Make'];
+            if (!empty($basicInfo['Model']))        $summaryParts[] = $basicInfo['Model'];
+            if (!empty($basicInfo['Year']))         $summaryParts[] = '(' . $basicInfo['Year'] . ')';
+            if (!empty($basicInfo['Body Class']))   $summaryParts[] = $basicInfo['Body Class'];
+            if (!empty($basicInfo['Vehicle Type'])) $summaryParts[] = $basicInfo['Vehicle Type'];
+            $summary = $summaryParts ? implode(' ', $summaryParts) : null;
+
+            return array_filter([
+                'basic_info'     => $basicInfo,
+                'specs'          => $specs,
+                'manufacturing'  => $manufacturing,
+                'summary'        => $summary,
+            ]);
+        }
         return ['error' => 'No vehicle data found for VIN'];
     }
 }
