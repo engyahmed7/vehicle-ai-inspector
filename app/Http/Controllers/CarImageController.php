@@ -55,7 +55,12 @@ class CarImageController extends Controller
                     $data[$type]['license_plate'] = $this->extractLicensePlate($fullText);
                 }
 
-                if ($type === 'dashboard' || $type === 'vin_area') {
+                if ($type === 'dashboard') {
+                    $data[$type]['odometer'] = $this->extractOdometer($fullText);
+                    $data[$type]['fuel_level'] = $this->detectFuelLevel($cloudinaryUrl, $fullText);
+                }
+
+                if ($type === 'vin_area') {
                     $vin = $this->extractVin($fullText);
 
                     if ($vin) {
@@ -77,19 +82,17 @@ class CarImageController extends Controller
                         } else {
                             $data[$type]['vehicle_age_eligible'] = 'Unknown (Missing model year)';
                         }
-                    } else {
-                        $data[$type]['vin'] = 'Not found';
                     }
                 }
 
 
-                Car::create([
-                    'image_url' => $cloudinaryUrl,
-                    'cloudinary_id' => $uploadResult['public_id'],
-                    'license_plate' => $data[$type]['license_plate'] ?? null,
-                    'odometer' => $data[$type]['odometer'] ?? null,
-                    'fuel_level' => $data[$type]['fuel_level'] ?? null,
-                ]);
+                // Car::create([
+                //     'image_url' => $cloudinaryUrl,
+                //     'cloudinary_id' => $uploadResult['public_id'],
+                //     'license_plate' => $data[$type]['license_plate'] ?? null,
+                //     'odometer' => $data[$type]['odometer'] ?? null,
+                //     'fuel_level' => $data[$type]['fuel_level'] ?? null,
+                // ]);
             } catch (\Exception $e) {
                 $data[$type]['error'] = 'Processing error: ' . $e->getMessage();
             }
