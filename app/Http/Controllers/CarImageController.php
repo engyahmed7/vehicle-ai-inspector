@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Services\VisionService;
 use Cloudinary\Cloudinary;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class CarImageController extends Controller
@@ -227,13 +228,13 @@ class CarImageController extends Controller
     private function getVehicleDataFromVin($vin)
     {
         $url = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevinvalues/{$vin}?format=json";
-        $response = @file_get_contents($url);
+        $response = Http::get($url);
 
-        if ($response === FALSE) {
+        if ($response->failed()) {
             return ['error' => 'Unable to reach NHTSA API'];
         }
 
-        $data = json_decode($response, true);
+        $data = $response->json();
         if (!empty($data['Results'][0])) {
             $result = $data['Results'][0];
 
