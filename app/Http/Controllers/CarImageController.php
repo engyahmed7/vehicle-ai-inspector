@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Services\InsuranceCardParser;
+use App\Services\MvrParserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Services\VisionService;
@@ -13,10 +15,14 @@ use Illuminate\Support\Facades\Log;
 class CarImageController extends Controller
 {
     protected $vision;
+    protected $insuranceCardParser;
+    protected $mvrParserService;
 
-    public function __construct(VisionService $vision)
+    public function __construct(VisionService $vision, InsuranceCardParser $insuranceCardParser, MvrParserService $mvrParserService)
     {
         $this->vision = $vision;
+        $this->insuranceCardParser = $insuranceCardParser;
+        $this->mvrParserService = $mvrParserService;
     }
 
     public function index()
@@ -86,6 +92,15 @@ class CarImageController extends Controller
                 }
 
 
+                if ($type === 'insurance_card') {
+                    $data[$type]['insurance_details'] = $this->insuranceCardParser->extractInsuranceDetails($fullText);
+                }
+
+                if ($type === 'mvr') {
+                    $data[$type]['mvr_details'] = $this->mvrParserService->extractMvrDetails($fullText);
+                }
+
+
                 // Car::create([
                 //     'image_url' => $cloudinaryUrl,
                 //     'cloudinary_id' => $uploadResult['public_id'],
@@ -98,7 +113,10 @@ class CarImageController extends Controller
             }
         }
 
-        return view('upload-results', compact('data'));
+        Log::info('response json ' .  json_encode($data));
+
+        return response()->json($data);
+        // return view('upload-results', compact('data'));
     }
 
     private function extractLicensePlate($ocrText)
@@ -281,5 +299,17 @@ class CarImageController extends Controller
             ]);
         }
         return ['error' => 'No vehicle data found for VIN'];
+    }
+
+
+    //mvr
+    public function uploadMvr($ocrText)
+    {
+
+        $details = $this->mvrParserService->extractMvrDetails($ocrText);
+
+        return response()->json([
+            'mvr_details' => $details
+        ]);
     }
 }

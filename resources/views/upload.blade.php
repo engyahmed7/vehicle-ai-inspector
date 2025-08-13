@@ -80,7 +80,7 @@
                 </div>
 
                 <div class="upload-item type-detail" data-type="vin_area">
-                    <div class="upload-icon">📊</div>
+                    <div class="upload-icon">🔢</div>
                     <label class="upload-label">VIN Area</label>
                     <div class="upload-description">vin area and instrument panel</div>
                     <input type="file" name="images[vin_area]" class="file-input" accept="image/*">
@@ -92,6 +92,21 @@
                     <label class="upload-label">License Plate</label>
                     <div class="upload-description">Close-up of license plate</div>
                     <input type="file" name="images[license_close]" class="file-input" accept="image/*">
+                    <div class="file-name"></div>
+                </div>
+
+                <div class="upload-item type-detail" data-type="insurance_card">
+                    <div class="upload-icon">🏷️</div>
+                    <label class="upload-label">insurance_card </label>
+                    <div class="upload-description">Close-up of license plate</div>
+                    <input type="file" name="images[insurance_card]" class="file-input" accept="image/*">
+                    <div class="file-name"></div>
+                </div>
+                <div class="upload-item type-detail" data-type="mvr">
+                    <div class="upload-icon">🏷️</div>
+                    <label class="upload-label">MVR</label>
+                    <div class="upload-description">Close-up of MVR</div>
+                    <input type="file" name="images[mvr]" class="file-input" accept="image/*">
                     <div class="file-name"></div>
                 </div>
             </div>
