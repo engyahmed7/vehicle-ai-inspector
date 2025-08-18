@@ -3,6 +3,7 @@
 use App\Http\Controllers\CarImageController;
 use App\Http\Controllers\CarListingController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Broadcast;
@@ -36,10 +37,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/cars', [CarListingController::class, 'index'])->name('cars.index');
     Route::get('/cars/{car}', [CarListingController::class, 'show'])->name('cars.show');
 
+    Route::get('/kyc', function () {
+        return view('kyc');
+    })->name('kyc.verify');
+
     Route::get('/api/conversations', [ChatController::class, 'getConversations']);
     Route::get('/api/conversations/{conversationId}/messages', [ChatController::class, 'getMessages']);
     Route::post('/api/conversations/{conversationId}/messages', [ChatController::class, 'sendMessage']);
     Route::post('/api/conversations', [ChatController::class, 'startConversation']);
 });
+
+
+Route::post('/persona/inquiry', [PersonaController::class, 'createInquiry'])->middleware('auth');
+Route::get('/persona/inquiry/{id}', [PersonaController::class, 'checkInquiry'])->middleware('auth');
+Route::get('/persona/status', [PersonaController::class, 'getCurrentStatus'])->middleware('auth');
+Route::get('/persona/verification-url', [PersonaController::class, 'getVerificationUrl'])->middleware('auth');
+Route::post('/persona/webhook', [PersonaController::class, 'webhook']);
+
 
 require __DIR__ . '/auth.php';

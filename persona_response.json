@@ -1,0 +1,669 @@
+{
+    "data": {
+        "type": "event",
+        "id": "evt_4nEu8xmuRUtvfNcmkV2E4Wr38and",
+        "attributes": {
+            "name": "verification.passed",
+            "payload": {
+                "data": {
+                    "type": "verification/selfie",
+                    "id": "ver_BaPUTAmQvK9QPsNBG5yJoKUgKPkA",
+                    "attributes": {
+                        "status": "passed",
+                        "created-at": "2025-08-18T07:28:26.000Z",
+                        "created-at-ts": 1755502106,
+                        "submitted-at": "2025-08-18T07:28:26.000Z",
+                        "submitted-at-ts": 1755502106,
+                        "completed-at": "2025-08-18T07:28:27.000Z",
+                        "completed-at-ts": 1755502107,
+                        "redacted-at": null,
+                        "country-code": null,
+                        "tags": [],
+                        "left-photo-url": "https://files.withpersona.com/3f6f8f-legacy-shared-us-central1%2Fselfiefile%2Fimage%2F15289727029%2Fshrine_processed%2F8a8abe28d05c8fb0219858f3887c9b78.jpg?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzZjZmOGYtbGVnYWN5LXNoYXJlZC11cy1jZW50cmFsMS9zZWxmaWVmaWxlL2ltYWdlLzE1Mjg5NzI3MDI5L3NocmluZV9wcm9jZXNzZWQvOGE4YWJlMjhkMDVjOGZiMDIxOTg1OGYzODg3YzliNzguanBnIiwiYXVkIjoiZmlsZXMud2l0aHBlcnNvbmEuY29tIiwiaXNzIjoid2l0aHBlcnNvbmEuY29tIiwiaWF0IjoxNzU1NTAyMTA3LCJuYmYiOjE3NTU1MDIxMDcsImp0aSI6IjkyZWY2MmZjLTg5YzYtNDVhNi04YjAyLWI0MTc4NjA1ODJhNyIsImdjc19idWNrZXQiOiJwZXJzb25hLXdlYiIsImZpbGVfZW5jcnlwdGVkIjp0cnVlLCJmaWxlX3NhbHQiOiJTaHJpbmU6OlVwbG9hZGVkRmlsZSIsImZpbGVfaW5mbyI6IjNmNmY4Zi1sZWdhY3ktc2hhcmVkLXVzLWNlbnRyYWwxL3NlbGZpZWZpbGUvaW1hZ2UvMTUyODk3MjcwMjkvc2hyaW5lX3Byb2Nlc3NlZC84YThhYmUyOGQwNWM4ZmIwMjE5ODU4ZjM4ODdjOWI3OC5qcGciLCJleHAiOjE3NTU1MjM3MDd9.JbLJxUvwZiAQrIvoKVs0jLl3mj1BcbogDgiawGG6-2c",
+                        "center-photo-url": "https://files.withpersona.com/5586d6-legacy-shared-us-central1%2Fselfiefile%2Fimage%2F15289727028%2Fshrine_processed%2Fa9367158659c4a075998f85995c8958f.jpg?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1NTg2ZDYtbGVnYWN5LXNoYXJlZC11cy1jZW50cmFsMS9zZWxmaWVmaWxlL2ltYWdlLzE1Mjg5NzI3MDI4L3NocmluZV9wcm9jZXNzZWQvYTkzNjcxNTg2NTljNGEwNzU5OThmODU5OTVjODk1OGYuanBnIiwiYXVkIjoiZmlsZXMud2l0aHBlcnNvbmEuY29tIiwiaXNzIjoid2l0aHBlcnNvbmEuY29tIiwiaWF0IjoxNzU1NTAyMTA3LCJuYmYiOjE3NTU1MDIxMDcsImp0aSI6IjU0ZTMyMGZkLTljZDYtNGQzZS1iNzMyLTVhZjA4ODJhOWQyZSIsImdjc19idWNrZXQiOiJwZXJzb25hLXdlYiIsImZpbGVfZW5jcnlwdGVkIjp0cnVlLCJmaWxlX3NhbHQiOiJTaHJpbmU6OlVwbG9hZGVkRmlsZSIsImZpbGVfaW5mbyI6IjU1ODZkNi1sZWdhY3ktc2hhcmVkLXVzLWNlbnRyYWwxL3NlbGZpZWZpbGUvaW1hZ2UvMTUyODk3MjcwMjgvc2hyaW5lX3Byb2Nlc3NlZC9hOTM2NzE1ODY1OWM0YTA3NTk5OGY4NTk5NWM4OTU4Zi5qcGciLCJleHAiOjE3NTU1MjM3MDd9.ACfPMNDMcYWrJ45mKazSIjbuyT9S28FMhMdXwTtteTI",
+                        "right-photo-url": "https://files.withpersona.com/919cb3-legacy-shared-us-central1%2Fselfiefile%2Fimage%2F15289727030%2Fshrine_processed%2Fb60690def381cd7633ca8e536645d223.jpg?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5MTljYjMtbGVnYWN5LXNoYXJlZC11cy1jZW50cmFsMS9zZWxmaWVmaWxlL2ltYWdlLzE1Mjg5NzI3MDMwL3NocmluZV9wcm9jZXNzZWQvYjYwNjkwZGVmMzgxY2Q3NjMzY2E4ZTUzNjY0NWQyMjMuanBnIiwiYXVkIjoiZmlsZXMud2l0aHBlcnNvbmEuY29tIiwiaXNzIjoid2l0aHBlcnNvbmEuY29tIiwiaWF0IjoxNzU1NTAyMTA3LCJuYmYiOjE3NTU1MDIxMDcsImp0aSI6IjcxNTE0ZTNmLTQyYjMtNGQ0MS04MjIxLTRlMGYyMjkyYjAxZiIsImdjc19idWNrZXQiOiJwZXJzb25hLXdlYiIsImZpbGVfZW5jcnlwdGVkIjp0cnVlLCJmaWxlX3NhbHQiOiJTaHJpbmU6OlVwbG9hZGVkRmlsZSIsImZpbGVfaW5mbyI6IjkxOWNiMy1sZWdhY3ktc2hhcmVkLXVzLWNlbnRyYWwxL3NlbGZpZWZpbGUvaW1hZ2UvMTUyODk3MjcwMzAvc2hyaW5lX3Byb2Nlc3NlZC9iNjA2OTBkZWYzODFjZDc2MzNjYThlNTM2NjQ1ZDIyMy5qcGciLCJleHAiOjE3NTU1MjM3MDd9.613-nld-H6-23pDmMfB5QckgfZisupAHantS5N9nLbA",
+                        "photo-urls": [
+                            {
+                                "page": "left_photo",
+                                "url": "https://files.withpersona.com/3f6f8f-legacy-shared-us-central1%2Fselfiefile%2Fimage%2F15289727029%2Fshrine_processed%2F8a8abe28d05c8fb0219858f3887c9b78.jpg?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzZjZmOGYtbGVnYWN5LXNoYXJlZC11cy1jZW50cmFsMS9zZWxmaWVmaWxlL2ltYWdlLzE1Mjg5NzI3MDI5L3NocmluZV9wcm9jZXNzZWQvOGE4YWJlMjhkMDVjOGZiMDIxOTg1OGYzODg3YzliNzguanBnIiwiYXVkIjoiZmlsZXMud2l0aHBlcnNvbmEuY29tIiwiaXNzIjoid2l0aHBlcnNvbmEuY29tIiwiaWF0IjoxNzU1NTAyMTA3LCJuYmYiOjE3NTU1MDIxMDcsImp0aSI6IjM2ZTg4MzE5LTQ3NTYtNGIyMi04YWI3LTc5MThmMTk1NTJmMiIsImdjc19idWNrZXQiOiJwZXJzb25hLXdlYiIsImZpbGVfZW5jcnlwdGVkIjp0cnVlLCJmaWxlX3NhbHQiOiJTaHJpbmU6OlVwbG9hZGVkRmlsZSIsImZpbGVfaW5mbyI6IjNmNmY4Zi1sZWdhY3ktc2hhcmVkLXVzLWNlbnRyYWwxL3NlbGZpZWZpbGUvaW1hZ2UvMTUyODk3MjcwMjkvc2hyaW5lX3Byb2Nlc3NlZC84YThhYmUyOGQwNWM4ZmIwMjE5ODU4ZjM4ODdjOWI3OC5qcGciLCJleHAiOjE3NTU1MjM3MDd9.kitvHghKTuIrFWmeHfsNjmO_r8gvnV6WlHuJJJBL7II",
+                                "byte-size": 168622
+                            },
+                            {
+                                "page": "center_photo",
+                                "url": "https://files.withpersona.com/5586d6-legacy-shared-us-central1%2Fselfiefile%2Fimage%2F15289727028%2Fshrine_processed%2Fa9367158659c4a075998f85995c8958f.jpg?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1NTg2ZDYtbGVnYWN5LXNoYXJlZC11cy1jZW50cmFsMS9zZWxmaWVmaWxlL2ltYWdlLzE1Mjg5NzI3MDI4L3NocmluZV9wcm9jZXNzZWQvYTkzNjcxNTg2NTljNGEwNzU5OThmODU5OTVjODk1OGYuanBnIiwiYXVkIjoiZmlsZXMud2l0aHBlcnNvbmEuY29tIiwiaXNzIjoid2l0aHBlcnNvbmEuY29tIiwiaWF0IjoxNzU1NTAyMTA3LCJuYmYiOjE3NTU1MDIxMDcsImp0aSI6IjZlYTE1MzZjLTA2MDItNDNiYy05YjQwLWY1OWNiNjhiZTExOCIsImdjc19idWNrZXQiOiJwZXJzb25hLXdlYiIsImZpbGVfZW5jcnlwdGVkIjp0cnVlLCJmaWxlX3NhbHQiOiJTaHJpbmU6OlVwbG9hZGVkRmlsZSIsImZpbGVfaW5mbyI6IjU1ODZkNi1sZWdhY3ktc2hhcmVkLXVzLWNlbnRyYWwxL3NlbGZpZWZpbGUvaW1hZ2UvMTUyODk3MjcwMjgvc2hyaW5lX3Byb2Nlc3NlZC9hOTM2NzE1ODY1OWM0YTA3NTk5OGY4NTk5NWM4OTU4Zi5qcGciLCJleHAiOjE3NTU1MjM3MDd9.UOmOJDxMZk8S0i2-xm3HLa4qxYlwo1nYJPv7-Le62_c",
+                                "byte-size": 169057
+                            },
+                            {
+                                "page": "right_photo",
+                                "url": "https://files.withpersona.com/919cb3-legacy-shared-us-central1%2Fselfiefile%2Fimage%2F15289727030%2Fshrine_processed%2Fb60690def381cd7633ca8e536645d223.jpg?access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5MTljYjMtbGVnYWN5LXNoYXJlZC11cy1jZW50cmFsMS9zZWxmaWVmaWxlL2ltYWdlLzE1Mjg5NzI3MDMwL3NocmluZV9wcm9jZXNzZWQvYjYwNjkwZGVmMzgxY2Q3NjMzY2E4ZTUzNjY0NWQyMjMuanBnIiwiYXVkIjoiZmlsZXMud2l0aHBlcnNvbmEuY29tIiwiaXNzIjoid2l0aHBlcnNvbmEuY29tIiwiaWF0IjoxNzU1NTAyMTA3LCJuYmYiOjE3NTU1MDIxMDcsImp0aSI6IjgyOTllNzgwLTMzNDYtNGNiMi05YzllLTIxODIyMGY4MDhkZiIsImdjc19idWNrZXQiOiJwZXJzb25hLXdlYiIsImZpbGVfZW5jcnlwdGVkIjp0cnVlLCJmaWxlX3NhbHQiOiJTaHJpbmU6OlVwbG9hZGVkRmlsZSIsImZpbGVfaW5mbyI6IjkxOWNiMy1sZWdhY3ktc2hhcmVkLXVzLWNlbnRyYWwxL3NlbGZpZWZpbGUvaW1hZ2UvMTUyODk3MjcwMzAvc2hyaW5lX3Byb2Nlc3NlZC9iNjA2OTBkZWYzODFjZDc2MzNjYThlNTM2NjQ1ZDIyMy5qcGciLCJleHAiOjE3NTU1MjM3MDd9._A3y0S72cZ_bjiJdX5Jawbg5E5yGOiCGUa_wWbkcgY0",
+                                "byte-size": 164884
+                            }
+                        ],
+                        "video-url": null,
+                        "center-photo-face-coordinates": null,
+                        "entity-confidence-reasons": [],
+                        "document-similarity-score": null,
+                        "selfie-similarity-score-left": null,
+                        "selfie-similarity-score-right": null,
+                        "from-reusable-persona": false,
+                        "checks": [
+                            {
+                                "name": "selfie_attribute_comparison",
+                                "status": "not_applicable",
+                                "reasons": [
+                                    "Over 9 levels deep, aborting normalization"
+                                ],
+                                "requirement": "not_required",
+                                "metadata": []
+                            },
+                            {
+                                "name": "selfie_id_comparison",
+                                "status": "passed",
+                                "reasons": [],
+                                "requirement": "required",
+                                "metadata": []
+                            },
+                            {
+                                "name": "selfie_pose_detection",
+                                "status": "passed",
+                                "reasons": [],
+                                "requirement": "required",
+                                "metadata": []
+                            },
+                            {
+                                "name": "selfie_multiple_faces_detection",
+                                "status": "passed",
+                                "reasons": [],
+                                "requirement": "required",
+                                "metadata": []
+                            },
+                            {
+                                "name": "selfie_pose_repeat_detection",
+                                "status": "passed",
+                                "reasons": [],
+                                "requirement": "required",
+                                "metadata": []
+                            },
+                            {
+                                "name": "selfie_account_comparison",
+                                "status": "passed",
+                                "reasons": [],
+                                "requirement": "not_required",
+                                "metadata": []
+                            },
+                            {
+                                "name": "selfie_suspicious_entity_detection",
+                                "status": "passed",
+                                "reasons": [],
+                                "requirement": "required",
+                                "metadata": []
+                            },
+                            {
+                                "name": "selfie_liveness_detection",
+                                "status": "passed",
+                                "reasons": [],
+                                "requirement": "required",
+                                "metadata": []
+                            },
+                            {
+                                "name": "selfie_glasses_detection",
+                                "status": "passed",
+                                "reasons": [],
+                                "requirement": "not_required",
+                                "metadata": []
+                            },
+                            {
+                                "name": "selfie_glare_detection",
+                                "status": "passed",
+                                "reasons": [],
+                                "requirement": "not_required",
+                                "metadata": []
+                            },
+                            {
+                                "name": "selfie_experimental_model_detection",
+                                "status": "passed",
+                                "reasons": [],
+                                "requirement": "not_required",
+                                "metadata": []
+                            },
+                            {
+                                "name": "selfie_portrait_quality_detection",
+                                "status": "passed",
+                                "reasons": [],
+                                "requirement": "not_required",
+                                "metadata": []
+                            },
+                            {
+                                "name": "selfie_public_figure_detection",
+                                "status": "passed",
+                                "reasons": [],
+                                "requirement": "not_required",
+                                "metadata": []
+                            },
+                            {
+                                "name": "selfie_age_comparison",
+                                "status": "passed",
+                                "reasons": [],
+                                "requirement": "not_required",
+                                "metadata": []
+                            },
+                            {
+                                "name": "selfie_face_covering_detection",
+                                "status": "passed",
+                                "reasons": [],
+                                "requirement": "required",
+                                "metadata": []
+                            },
+                            {
+                                "name": "selfie_video_quality_detection",
+                                "status": "passed",
+                                "reasons": [],
+                                "requirement": "not_required",
+                                "metadata": []
+                            },
+                            {
+                                "name": "selfie_image_quality_detection",
+                                "status": "passed",
+                                "reasons": [],
+                                "requirement": "not_required",
+                                "metadata": []
+                            }
+                        ],
+                        "capture-method": "video"
+                    },
+                    "relationships": {
+                        "inquiry": {
+                            "data": {
+                                "type": "inquiry",
+                                "id": "inq_tCrG9LbjtQcmVGh2DwpwFzcmohjC"
+                            }
+                        },
+                        "template": { "data": null },
+                        "inquiry-template-version": {
+                            "data": {
+                                "type": "inquiry-template-version",
+                                "id": "itmplv_xttRpR1429W6Mvh1yemYiLvNjTmL"
+                            }
+                        },
+                        "inquiry-template": {
+                            "data": {
+                                "type": "inquiry-template",
+                                "id": "itmpl_zcriUoeQzTxL4gh7ZaKAGurJbSkp"
+                            }
+                        },
+                        "verification-template": {
+                            "data": {
+                                "type": "verification-template/selfie",
+                                "id": "vtmpl_PaNbXYqGLqPDw3TfL2WLvfJBAF9F"
+                            }
+                        },
+                        "verification-template-version": {
+                            "data": {
+                                "type": "verification-template-version/selfie",
+                                "id": "vtmplv_pNztioSFWgLDjPNv5a57cSSriMh5"
+                            }
+                        },
+                        "transaction": { "data": null },
+                        "accounts": {
+                            "data": [
+                                {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "id": "Over 9 levels deep, aborting normalization"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "included": [
+                    {
+                        "type": "inquiry",
+                        "id": "inq_tCrG9LbjtQcmVGh2DwpwFzcmohjC",
+                        "attributes": {
+                            "status": "pending",
+                            "reference-id": "user_5",
+                            "note": null,
+                            "behaviors": {
+                                "api-version-less-than-minimum-count": null,
+                                "autofill-cancels": null,
+                                "autofill-starts": null,
+                                "behavior-threat-level": null,
+                                "bot-score": null,
+                                "completion-time": null,
+                                "debugger-attached": null,
+                                "devtools-open": null,
+                                "distraction-events": null,
+                                "hesitation-baseline": null,
+                                "hesitation-count": null,
+                                "hesitation-percentage": null,
+                                "hesitation-time": null,
+                                "mobile-sdk-version-less-than-minimum-count": null,
+                                "request-spoof-attempts": null,
+                                "shortcut-copies": null,
+                                "shortcut-pastes": null,
+                                "user-agent-spoof-attempts": null
+                            },
+                            "tags": [],
+                            "creator": "API",
+                            "reviewer-comment": null,
+                            "updated-at": "2025-08-18T07:28:27.000Z",
+                            "created-at": "2025-08-18T07:26:55.000Z",
+                            "started-at": "2025-08-18T07:27:51.000Z",
+                            "expires-at": "2025-08-19T07:26:55.000Z",
+                            "completed-at": null,
+                            "failed-at": null,
+                            "marked-for-review-at": null,
+                            "decisioned-at": null,
+                            "expired-at": null,
+                            "redacted-at": null,
+                            "previous-step-name": "gov_id_c58c5b_verification",
+                            "next-step-name": "selfie_c170fc_verification",
+                            "name-first": "ALEXANDER J",
+                            "name-middle": null,
+                            "name-last": "SAMPLE",
+                            "birthdate": "1977-07-17",
+                            "address-street-1": "600 CALIFORNIA STREET",
+                            "address-street-2": null,
+                            "address-city": "SAN FRANCISCO",
+                            "address-subdivision": "California",
+                            "address-subdivision-abbr": "CA",
+                            "address-postal-code": "941090000",
+                            "address-postal-code-abbr": "94109",
+                            "social-security-number": null,
+                            "identification-number": "I1234562",
+                            "email-address": null,
+                            "phone-number": null,
+                            "fields": {
+                                "current-government-id": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "selected-country-code": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "selected-id-class": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "address-street-1": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "address-street-2": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "address-city": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "address-subdivision": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "address-postal-code": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "address-country-code": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "birthdate": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "expiration-date": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "email-address": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "identification-class": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "identification-number": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "name-first": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "name-middle": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "name-last": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "phone-number": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "card-access-number": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "issue-date": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "issuing-authority": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "government-identification-number-map": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "current-selfie": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                }
+                            }
+                        },
+                        "relationships": {
+                            "account": {
+                                "data": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "id": "Over 9 levels deep, aborting normalization"
+                                }
+                            },
+                            "template": { "data": null },
+                            "inquiry-template": {
+                                "data": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "id": "Over 9 levels deep, aborting normalization"
+                                }
+                            },
+                            "inquiry-template-version": {
+                                "data": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "id": "Over 9 levels deep, aborting normalization"
+                                }
+                            },
+                            "transaction": { "data": null },
+                            "reviewer": { "data": null },
+                            "reports": { "data": [] },
+                            "verifications": {
+                                "data": [
+                                    "Over 9 levels deep, aborting normalization",
+                                    "Over 9 levels deep, aborting normalization"
+                                ]
+                            },
+                            "sessions": {
+                                "data": [
+                                    "Over 9 levels deep, aborting normalization"
+                                ]
+                            },
+                            "documents": {
+                                "data": [
+                                    "Over 9 levels deep, aborting normalization"
+                                ]
+                            },
+                            "selfies": {
+                                "data": [
+                                    "Over 9 levels deep, aborting normalization"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "type": "inquiry-template-version",
+                        "id": "itmplv_xttRpR1429W6Mvh1yemYiLvNjTmL",
+                        "attributes": {
+                            "name-display": null,
+                            "status": "published",
+                            "enabled-locales": [
+                                "ar-EG",
+                                "az",
+                                "bg",
+                                "bn",
+                                "cs",
+                                "cy",
+                                "da",
+                                "de",
+                                "el-GR",
+                                "en-US",
+                                "es-MX",
+                                "fi",
+                                "fr",
+                                "he",
+                                "hi",
+                                "hr",
+                                "hu",
+                                "hy",
+                                "id-ID",
+                                "it",
+                                "ja",
+                                "ko-KR",
+                                "lt",
+                                "ms",
+                                "nl-NL",
+                                "no",
+                                "pl",
+                                "pt-BR",
+                                "ro",
+                                "ru",
+                                "sk",
+                                "sr",
+                                "sv",
+                                "ta",
+                                "th",
+                                "tl",
+                                "tr-TR",
+                                "uk-UA",
+                                "ur",
+                                "vi",
+                                "zh-CN",
+                                "zh-TW"
+                            ],
+                            "created-at": "2025-08-17T10:57:45.919Z",
+                            "updated-at": "2025-08-17T10:57:48.105Z",
+                            "published-at": "2025-08-17T10:57:48.000Z",
+                            "theme": {
+                                "border-radius": null,
+                                "border-radius-modal": null,
+                                "border-radius-input": null,
+                                "border-width": null,
+                                "border-width-input": null,
+                                "button-background-image": null,
+                                "button-font-weight": null,
+                                "button-position": null,
+                                "button-shadow-strength": null,
+                                "button-text-transform": null,
+                                "color-button-primary": null,
+                                "color-button-secondary": null,
+                                "color-button-secondary-fill": null,
+                                "color-button-primary-fill-disabled": null,
+                                "color-button-secondary-fill-disabled": null,
+                                "color-error": null,
+                                "color-font": null,
+                                "color-font-button-primary": null,
+                                "color-font-button-secondary": null,
+                                "color-font-small": null,
+                                "color-font-title": null,
+                                "color-icon-header": null,
+                                "color-input-background": null,
+                                "color-input-border": null,
+                                "color-link": null,
+                                "color-modal-background": null,
+                                "color-primary": null,
+                                "color-progress-bar": null,
+                                "color-success": null,
+                                "color-warning": null,
+                                "color-divider": null,
+                                "color-dropdown-background": null,
+                                "color-dropdown-option": null,
+                                "font-family": null,
+                                "font-family-title": null,
+                                "font-url": null,
+                                "font-size-body": null,
+                                "font-size-header": null,
+                                "font-size-small": null,
+                                "line-height-body": null,
+                                "line-height-header": null,
+                                "line-height-small": null,
+                                "header-font-weight": null,
+                                "header-margin-bottom": null,
+                                "icon-color-primary": null,
+                                "icon-color-highlight": null,
+                                "icon-color-stroke": null,
+                                "icon-color-background": null,
+                                "icon-color-government-id-type": null,
+                                "icon-style": null,
+                                "input-style": null,
+                                "page-transition": null,
+                                "text-align": null,
+                                "text-decoration-line-link": null,
+                                "us-state-input-method": null,
+                                "vertical-options-style": null,
+                                "government-id-pictograph-position": null,
+                                "id-back-pictograph-height": null,
+                                "id-back-pictograph-url": null,
+                                "id-front-pictograph-height": null,
+                                "id-front-pictograph-url": null,
+                                "passport-front-pictograph-height": null,
+                                "passport-front-pictograph-url": null,
+                                "passport-signature-pictograph-height": null,
+                                "passport-signature-pictograph-url": null,
+                                "government-id-select-pictograph-height": null,
+                                "government-id-select-pictograph-url": null,
+                                "device-handoff-terms-text-position": null,
+                                "selfie-pictograph-url": null,
+                                "selfie-pictograph-height": null,
+                                "selfie-center-pictograph-url": null,
+                                "selfie-center-pictograph-height": null,
+                                "selfie-left-pictograph-url": null,
+                                "selfie-left-pictograph-height": null,
+                                "selfie-right-pictograph-url": null,
+                                "selfie-right-pictograph-height": null,
+                                "document-pictograph-position": null,
+                                "document-pictograph-height": null,
+                                "document-pictograph-url": null,
+                                "camera-support-pictograph-height": null,
+                                "camera-support-pictograph-url": null,
+                                "loading-pictograph-height": null,
+                                "loading-pictograph-url": null,
+                                "navbar-logo-display": null,
+                                "logo-url": null,
+                                "logo": null,
+                                "logo-data": null,
+                                "logo-filename": null
+                            }
+                        },
+                        "relationships": {
+                            "inquiry-template": {
+                                "data": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "id": "Over 9 levels deep, aborting normalization"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "type": "inquiry-template",
+                        "id": "itmpl_zcriUoeQzTxL4gh7ZaKAGurJbSkp",
+                        "attributes": {
+                            "status": "active",
+                            "name": "KYC: GovID + Selfie",
+                            "embedded-flow-domain-allowlist": [],
+                            "hosted-flow-subdomains": [],
+                            "hosted-flow-redirect-uri-schemes": []
+                        },
+                        "relationships": {
+                            "latest-published-version": {
+                                "data": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "id": "Over 9 levels deep, aborting normalization"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "type": "verification-template/selfie",
+                        "id": "vtmpl_PaNbXYqGLqPDw3TfL2WLvfJBAF9F"
+                    },
+                    {
+                        "type": "verification-template-version/selfie",
+                        "id": "vtmplv_pNztioSFWgLDjPNv5a57cSSriMh5"
+                    },
+                    {
+                        "type": "account",
+                        "id": "act_A2qLBTFG1gMvZ24zwo7wPPs5ox5c",
+                        "attributes": {
+                            "reference-id": "user_5",
+                            "created-at": "2025-08-18T07:26:55.000Z",
+                            "updated-at": "2025-08-18T07:27:52.000Z",
+                            "redacted-at": null,
+                            "account-type-name": "User",
+                            "fields": {
+                                "name": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "address": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "identification_numbers": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "birthdate": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "phone_number": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "email_address": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                },
+                                "selfie_photo": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "value": "Over 9 levels deep, aborting normalization"
+                                }
+                            },
+                            "name-first": "ALEXANDER J",
+                            "name-middle": null,
+                            "name-last": "SAMPLE",
+                            "social-security-number": null,
+                            "address-street-1": "600 CALIFORNIA STREET",
+                            "address-street-2": null,
+                            "address-city": "SAN FRANCISCO",
+                            "address-subdivision": "CA",
+                            "address-postal-code": "94109",
+                            "country-code": "US",
+                            "birthdate": "1977-07-17",
+                            "phone-number": null,
+                            "email-address": null,
+                            "tags": [],
+                            "identification-numbers": {
+                                "dl": [
+                                    "Over 9 levels deep, aborting normalization"
+                                ]
+                            }
+                        },
+                        "relationships": {
+                            "account-type": {
+                                "data": {
+                                    "type": "Over 9 levels deep, aborting normalization",
+                                    "id": "Over 9 levels deep, aborting normalization"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "created-at": "2025-08-18T07:28:27.713Z"
+        }
+    }
+}

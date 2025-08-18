@@ -35,4 +35,13 @@ return [
         ],
     ],
 
+    'persona' => [
+        'key' => env('PERSONA_API_KEY'),
+        'url' => env('PERSONA_API_URL', 'https://api.withpersona.com/api/v1'),
+        'template_id' => env('PERSONA_TEMPLATE_ID'),
+        'template_version_id' => env('PERSONA_TEMPLATE_VERSION_ID'),
+        'webhook_secret' => env('PERSONA_WEBHOOK_SECRET'),
+    ],
+
+
 ];

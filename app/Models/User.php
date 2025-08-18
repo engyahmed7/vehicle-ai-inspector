@@ -22,6 +22,9 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'persona_inquiry_id',
+        'kyc_status',
+        'kyc_completed_at',
     ];
 
     protected $attributes = [
@@ -49,6 +52,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'role' => 'string',
+            'kyc_completed_at' => 'datetime',
         ];
     }
 

@@ -15,17 +15,20 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    
+
                     <x-nav-link :href="route('cars.index')" :active="request()->routeIs('cars.*')">
                         {{ Auth::user()->role === 'car_owner' ? __('My Vehicles') : __('Browse Cars') }}
                     </x-nav-link>
-                    
+
                     <x-nav-link :href="route('chat')" :active="request()->routeIs('chat')">
                         {{ __('Chat') }}
                     </x-nav-link>
-                    
+
                     <x-nav-link :href="route('upload.index')" :active="request()->routeIs('upload.*')">
                         {{ __('Vehicle Analysis') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('kyc.verify')" :active="request()->routeIs('kyc')">
+                        {{ __('Identity Verification') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -82,15 +85,15 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            
+
             <x-responsive-nav-link :href="route('cars.index')" :active="request()->routeIs('cars.*')">
                 {{ Auth::user()->role === 'car_owner' ? __('My Vehicles') : __('Browse Cars') }}
             </x-responsive-nav-link>
-            
+
             <x-responsive-nav-link :href="route('chat')" :active="request()->routeIs('chat')">
                 {{ __('Chat') }}
             </x-responsive-nav-link>
-            
+
             <x-responsive-nav-link :href="route('upload.index')" :active="request()->routeIs('upload.*')">
                 {{ __('Vehicle Analysis') }}
             </x-responsive-nav-link>
