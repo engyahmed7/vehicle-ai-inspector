@@ -13,7 +13,8 @@
             <div id="chat-app">
                 <div class="bg-white rounded-lg shadow-lg h-96 flex flex-col">
                     <div class="bg-blue-600 text-white p-4 rounded-t-lg">
-                        <h3 class="text-lg font-semibold">Chat with {{ Auth::user()->role === 'car_owner' ? 'Customers' : 'Car Owners' }}</h3>
+                        <h3 class="text-lg font-semibold">Chat with
+                            {{ Auth::user()->role === 'car_owner' ? 'Customers' : 'Car Owners' }}</h3>
                     </div>
 
                     <div id="messages" class="flex-1 p-4 overflow-y-auto space-y-3">
@@ -22,19 +23,12 @@
 
                     <div class="border-t p-4">
                         <form id="message-form" class="flex space-x-2">
-                            <input
-                                type="text"
-                                id="message-input"
-                                placeholder="Type a message..."
+                            <input type="text" id="message-input" placeholder="Type a message..."
                                 class="flex-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                required
-                                disabled
-                            >
-                            <button
-                                type="submit"
+                                required disabled>
+                            <button type="submit"
                                 class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400"
-                                disabled
-                            >
+                                disabled>
                                 Send
                             </button>
                         </form>
@@ -50,34 +44,35 @@
             </div>
 
             <script>
-                   const pusher = new Pusher('{{ config('broadcasting.connections.pusher.key') }}', {
-        cluster: '{{ config('broadcasting.connections.pusher.options.cluster') }}',
-        authorizer: (channel, options) => {
-            return {
-                authorize: (socketId, callback) => {
-                    fetch('/broadcasting/auth', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                        },
-                        body: JSON.stringify({
-                            socket_id: socketId,
-                            channel_name: channel.name
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        callback(false, data);
-                    })
-                    .catch(error => {
-                        console.error('Auth error:', error);
-                        callback(true, error);
-                    });
-                }
-            };
-        }
-    });
+                const pusher = new Pusher('{{ config('broadcasting.connections.pusher.key') }}', {
+                    cluster: '{{ config('broadcasting.connections.pusher.options.cluster') }}',
+                    authorizer: (channel, options) => {
+                        return {
+                            authorize: (socketId, callback) => {
+                                fetch('/broadcasting/auth', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                                                .content
+                                        },
+                                        body: JSON.stringify({
+                                            socket_id: socketId,
+                                            channel_name: channel.name
+                                        })
+                                    })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        callback(false, data);
+                                    })
+                                    .catch(error => {
+                                        console.error('Auth error:', error);
+                                        callback(true, error);
+                                    });
+                            }
+                        };
+                    }
+                });
 
                 let currentConversationId = null;
                 const currentUserId = {{ Auth::id() }};
@@ -141,7 +136,8 @@
                 function displayMessages(messages) {
                     const container = document.getElementById('messages');
                     if (messages.length === 0) {
-                        container.innerHTML = '<div class="text-center text-gray-500">No messages yet. Start the conversation!</div>';
+                        container.innerHTML =
+                            '<div class="text-center text-gray-500">No messages yet. Start the conversation!</div>';
                         return;
                     }
 
@@ -203,7 +199,9 @@
                                 'Content-Type': 'application/json',
                                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                             },
-                            body: JSON.stringify({ content })
+                            body: JSON.stringify({
+                                content
+                            })
                         });
 
                         if (response.ok) {
@@ -218,4 +216,5 @@
             </script>
         </div>
     </div>
+
 </x-app-layout>
