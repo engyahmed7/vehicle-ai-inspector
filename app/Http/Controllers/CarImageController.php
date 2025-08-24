@@ -5,27 +5,28 @@ namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Services\InsuranceCardParser;
 use App\Services\MvrParserService;
-use App\Services\CheckrService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+// use App\Services\CheckrService;
 use App\Services\VisionService;
 use Cloudinary\Cloudinary;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class CarImageController extends Controller
 {
     protected $vision;
     protected $insuranceCardParser;
     protected $mvrParserService;
-    protected $checkrService;
+    // protected $checkrService;
 
-    public function __construct(VisionService $vision, InsuranceCardParser $insuranceCardParser, MvrParserService $mvrParserService, CheckrService $checkrService)
+    public function __construct(VisionService $vision, InsuranceCardParser $insuranceCardParser, MvrParserService $mvrParserService)
     {
         $this->vision = $vision;
         $this->insuranceCardParser = $insuranceCardParser;
         $this->mvrParserService = $mvrParserService;
-        $this->checkrService = $checkrService;
+        // $this->checkrService = $checkrService;
     }
 
     public function index()
@@ -104,13 +105,7 @@ class CarImageController extends Controller
                 }
 
 
-                // Car::create([
-                //     'image_url' => $cloudinaryUrl,
-                //     'cloudinary_id' => $uploadResult['public_id'],
-                //     'license_plate' => $data[$type]['license_plate'] ?? null,
-                //     'odometer' => $data[$type]['odometer'] ?? null,
-                //     'fuel_level' => $data[$type]['fuel_level'] ?? null,
-                // ]);
+
             } catch (\Exception $e) {
                 $data[$type]['error'] = 'Processing error: ' . $e->getMessage();
             }
@@ -118,8 +113,10 @@ class CarImageController extends Controller
 
         Log::info('response json ' .  json_encode($data));
 
-        return response()->json($data);
-        // return view('upload-results', compact('data'));
+        $car = $this->saveCarData($data, $request);
+
+        // return response()->json($data);
+        return view('upload-results', compact('data', 'car'));
     }
 
     private function extractLicensePlate($ocrText)
@@ -304,6 +301,100 @@ class CarImageController extends Controller
         return ['error' => 'No vehicle data found for VIN'];
     }
 
+
+    private function saveCarData($data, $request)
+    {
+        $primaryImage = $data['front'] ?? $data[array_key_first($data)] ?? null;
+
+        $carData = [
+            'user_id' => Auth::id(),
+            'images_data' => $data,
+            'image_url' => $primaryImage['image_url'] ?? null,
+            'cloudinary_id' => $primaryImage['cloudinary_id'] ?? null,
+        ];
+
+        $vinData = $data['vin_area'] ?? null;
+        if ($vinData) {
+            $carData['vin'] = $vinData['vin'] ?? null;
+
+            if (isset($vinData['vehicle_info'])) {
+                $carData['vehicle_info'] = $vinData['vehicle_info'];
+                $basicInfo = $vinData['vehicle_info']['basic_info'] ?? [];
+                $carData['make'] = $basicInfo['Make'] ?? null;
+                $carData['model'] = $basicInfo['Model'] ?? null;
+                $carData['year'] = $basicInfo['Year'] ?? null;
+                $carData['body_class'] = $basicInfo['Body Class'] ?? null;
+                $carData['vehicle_type'] = $basicInfo['Vehicle Type'] ?? null;
+
+                $specs = $vinData['vehicle_info']['specs'] ?? [];
+                $carData['fuel_type'] = $specs['Fuel Type'] ?? null;
+                $carData['transmission_style'] = $specs['Transmission Style'] ?? null;
+            }
+
+            $carData['vehicle_age_eligible'] = $vinData['vehicle_age_eligible'] ?? null;
+        }
+
+        foreach ($data as $type => $typeData) {
+            if (isset($typeData['license_plate'])) {
+                $carData['license_plate'] = $typeData['license_plate'];
+            }
+            if (isset($typeData['odometer'])) {
+                $carData['odometer'] = $typeData['odometer'];
+            }
+            if (isset($typeData['fuel_level'])) {
+                $carData['fuel_level'] = $this->convertFuelLevelToInteger($typeData['fuel_level']);
+            }
+        }
+
+        if (isset($data['insurance_card']['insurance_details'])) {
+            $carData['insurance_details'] = $data['insurance_card']['insurance_details'];
+        }
+
+        if (isset($data['mvr']['mvr_details'])) {
+            $carData['mvr_details'] = $data['mvr']['mvr_details'];
+        }
+
+        return Car::create($carData);
+    }
+
+    private function convertFuelLevelToInteger($fuelLevel)
+    {
+        $fuelLevelMap = [
+            'Full' => 100,
+            '3/4' => 75,
+            '1/2' => 50,
+            '1/4' => 25,
+            'Empty' => 0,
+            'Unknown' => null,
+        ];
+
+        return $fuelLevelMap[$fuelLevel] ?? null;
+    }
+
+    public function getCarResults($carId)
+    {
+        $car = Car::with('user')->findOrFail($carId);
+        return response()->json($car);
+    }
+
+    public function getUserCars()
+    {
+        $cars = Car::where('user_id', Auth::id())
+                  ->orderBy('created_at', 'desc')
+                  ->get();
+        return response()->json($cars);
+    }
+
+    public function showResults($carId)
+    {
+        $car = Car::where('user_id', Auth::id())
+                  ->findOrFail($carId);
+
+        return view('upload-results', [
+            'data' => $car->images_data,
+            'car' => $car
+        ]);
+    }
 
     //mvr
     public function uploadMvr($ocrText)

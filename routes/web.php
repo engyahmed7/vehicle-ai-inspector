@@ -19,6 +19,9 @@ Route::get('/upload-car', function () {
 
 Route::get('/upload', [CarImageController::class, 'index'])->name('upload.index');
 Route::post('/upload', [CarImageController::class, 'analyze'])->name('upload.analyze');
+Route::get('/results/{carId}', [CarImageController::class, 'showResults'])->middleware('auth')->name('results.show');
+Route::get('/api/cars/{carId}/results', [CarImageController::class, 'getCarResults'])->name('cars.results');
+Route::get('/api/user/cars', [CarImageController::class, 'getUserCars'])->middleware('auth')->name('user.cars');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

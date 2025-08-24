@@ -68,6 +68,17 @@
             const kycPending = document.getElementById('kyc-pending');
 
             let currentInquiryId = null;
+            let statusCheckInterval = null;
+
+            const storedInquiryId = localStorage.getItem('persona_inquiry_id');
+            if (storedInquiryId) {
+                currentInquiryId = storedInquiryId;
+                if (kycForm && kycPending) {
+                    kycForm.classList.add('hidden');
+                    kycPending.classList.remove('hidden');
+                    startAutoStatusCheck();
+                }
+            }
 
             if (startKycBtn) {
                 startKycBtn.addEventListener('click', async function() {
@@ -92,12 +103,16 @@
                         if (data.data && data.data.id) {
                             currentInquiryId = data.data.id;
 
+                            localStorage.setItem('persona_inquiry_id', currentInquiryId);
+
                             const sessionUrl =
                                 `https://withpersona.com/verify?inquiry-id=${data.data.id}`;
                             window.open(sessionUrl, '_blank');
 
                             kycForm.classList.add('hidden');
                             kycPending.classList.remove('hidden');
+
+                            startAutoStatusCheck();
                         } else {
                             alert('Failed to create verification session. Please try again.');
                             this.disabled = false;
@@ -116,36 +131,74 @@
                 checkStatusBtn.addEventListener('click', checkVerificationStatus);
             }
 
-            async function checkVerificationStatus() {
-                if (!currentInquiryId) {
-                    alert('No verification session found');
-                    return;
+            function startAutoStatusCheck() {
+                if (statusCheckInterval) {
+                    clearInterval(statusCheckInterval);
                 }
 
-                checkStatusBtn.disabled = true;
-                checkStatusBtn.textContent = 'Checking status...';
+                checkVerificationStatus();
+                statusCheckInterval = setInterval(checkVerificationStatus, 3000);
+            }
+
+            function stopAutoStatusCheck() {
+                if (statusCheckInterval) {
+                    clearInterval(statusCheckInterval);
+                    statusCheckInterval = null;
+                }
+            }
+
+            async function checkVerificationStatus() {
+                if (!currentInquiryId) {
+                    stopAutoStatusCheck();
+                    return;
+                }
 
                 try {
                     const response = await fetch(`/persona/inquiry/${currentInquiryId}`);
                     const data = await response.json();
 
                     const status = data.data?.attributes?.status;
+                    console.log('Current verification status:', status);
 
-                    if (status && status !== 'created' && status !== 'started') {
-                        window.location.reload();
-                    } else {
-                        checkStatusBtn.disabled = false;
-                        checkStatusBtn.textContent = 'Check Verification Status';
-                        alert(
-                            'Verification still in progress. Please complete it in the Persona tab and try again.');
+                    if (status && status !== 'created' && status !== 'started' && status !== 'pending') {
+                        stopAutoStatusCheck();
+                        localStorage.removeItem('persona_inquiry_id');
+
+                        if (status === 'approved') {
+                            showStatusMessage('✅ Verification completed successfully! Updating...', 'success');
+                        } else if (status === 'declined' || status === 'failed') {
+                            showStatusMessage('❌ Verification failed. Updating...', 'error');
+                        } else {
+                            showStatusMessage('📋 Verification completed. Updating...', 'info');
+                        }
+
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 2000);
+                    } else if (checkStatusBtn) {
+                        if (!checkStatusBtn.disabled) {
+                            checkStatusBtn.textContent = `Auto-checking... (${status || 'pending'})`;
+                        }
                     }
                 } catch (error) {
                     console.error('Status check error:', error);
-                    checkStatusBtn.disabled = false;
-                    checkStatusBtn.textContent = 'Check Verification Status';
-                    alert('Error checking status. Please try again.');
                 }
             }
+
+            function showStatusMessage(message, type) {
+                const kycStatus = document.getElementById('kyc-status');
+                const messageClass = type === 'success' ? 'bg-green-100 border-green-400 text-green-700' :
+                                   type === 'error' ? 'bg-red-100 border-red-400 text-red-700' :
+                                   'bg-blue-100 border-blue-400 text-blue-700';
+
+                kycStatus.innerHTML = `
+                    <div class="${messageClass} px-4 py-3 rounded">
+                        ${message}
+                    </div>
+                `;
+            }
+
+            window.addEventListener('beforeunload', stopAutoStatusCheck);
         });
     </script>
 

@@ -327,6 +327,85 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
+        /* MVR Specific Styles */
+        .license-number {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .violations-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ecf0f1;
+            border-radius: 8px;
+            padding: 10px;
+            background: #f8f9fa;
+        }
+
+        .violation-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #dee2e6;
+            font-size: 0.9rem;
+        }
+
+        .violation-item:last-child {
+            border-bottom: none;
+        }
+
+        .violation-date {
+            color: #6c757d;
+            font-weight: 500;
+            min-width: 100px;
+        }
+
+        .violation-type {
+            color: #e74c3c;
+            font-weight: 600;
+            text-align: right;
+            flex: 1;
+        }
+
+        /* Insurance Card Specific Styles */
+        .insurance-policy {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        /* MVR Card Highlighting */
+        .result-card[data-type="mvr"] {
+            border: 2px solid #e67e22;
+        }
+
+        .result-card[data-type="mvr"] .card-header {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+        }
+
+        .result-card[data-type="insurance_card"] {
+            border: 2px solid #27ae60;
+        }
+
+        .result-card[data-type="insurance_card"] .card-header {
+            background: linear-gradient(135deg, #27ae60, #229954);
+        }
+
         @media (max-width: 768px) {
             .results-grid {
                 grid-template-columns: 1fr;

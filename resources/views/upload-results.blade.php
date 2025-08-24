@@ -1,12 +1,10 @@
-@extends('layouts.app')
-
 @section('title', 'Vehicle Image Analysis')
 @section('styles')
-<link rel="stylesheet" href="{{ asset('css/upload-results.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/upload-results.css') }}">
 @endsection
 
-@section('content')
-<div class="container">
+<x-app-layout>
+    <div class="container">
         <div class="header">
             <h1>Vehicle Analysis Complete</h1>
             <p>Comprehensive AI-powered vehicle inspection results</p>
@@ -29,6 +27,7 @@
 
     <script>
         const analysisData = @json($data);
-        initializeResults(analysisData);
+        const savedCarData = @json($car);
+        initializeResults(analysisData, savedCarData);
     </script>
-@endsection
+</x-app-layout>

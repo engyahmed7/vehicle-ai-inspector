@@ -9,6 +9,8 @@ function getImageTypeIcon(type) {
         dashboard: "📊",
         license_close: "🏷️",
         vin_area: "🔢",
+        insurance_card: "🛡️",
+        mvr: "📋",
     };
     return icons[type] || "📷";
 }
@@ -24,6 +26,8 @@ function getImageTypeName(type) {
         dashboard: "Dashboard",
         license_close: "License Plate",
         vin_area: "VIN Area",
+        insurance_card: "Insurance Card",
+        mvr: "Motor Vehicle Record",
     };
     return (
         names[type] ||
@@ -107,7 +111,7 @@ function renderResults(data) {
         html += `
             <div class="result-card ${
                 type === "vin_area" ? "vehicle-info-card" : ""
-            }">
+            }" data-type="${type}">
                 <div class="card-header ${
                     type === "vin_area" ? "vehicle-info-header" : ""
                 }">
@@ -170,6 +174,15 @@ function renderResults(data) {
             `;
         }
 
+        if (result.mvr_details && type === "mvr") {
+            console.log("Rendering MVR Details:", result.mvr_details);
+            html += renderMvrDetails(result.mvr_details);
+        }
+
+        if (result.insurance_details && type === "insurance_card") {
+            html += renderInsuranceDetails(result.insurance_details);
+        }
+
         html += `
                     <div class="data-item">
                         <div class="data-label">Cloudinary ID</div>
@@ -194,7 +207,128 @@ function renderResults(data) {
     resultsContent.style.display = "block";
 }
 
-function downloadReport() {
+function downloadReport() {}
+
+function renderMvrDetails(mvrDetails) {
+    let html = "";
+
+    if (mvrDetails.driver_name) {
+        html += `
+            <div class="data-item">
+                <div class="data-label">Driver Name</div>
+                <div class="data-value">${mvrDetails.driver_name}</div>
+            </div>
+        `;
+    }
+
+    if (mvrDetails.license_number) {
+        html += `
+            <div class="data-item">
+                <div class="data-label">License Number</div>
+                <div class="data-value license-number">${mvrDetails.license_number}</div>
+            </div>
+        `;
+    }
+
+    if (mvrDetails.class || mvrDetails.license_class) {
+        html += `
+            <div class="data-item">
+                <div class="data-label">License Class</div>
+                <div class="data-value">${
+                    mvrDetails.class || mvrDetails.license_class
+                }</div>
+            </div>
+        `;
+    }
+
+    if (mvrDetails.issue_date) {
+        html += `
+            <div class="data-item">
+                <div class="data-label">Issue Date </div>
+                <div class="data-value">${mvrDetails.issue_date}</div>
+            </div>
+        `;
+    }
+
+    if (mvrDetails.expiry_date) {
+        html += `
+            <div class="data-item">
+                <div class="data-label">Expiration Date</div>
+                <div class="data-value">${mvrDetails.expiry_date}</div>
+            </div>
+        `;
+    }
+
+    if (mvrDetails.dob) {
+        html += `
+            <div class="data-item">
+                <div class="data-label">Date of Birth</div>
+                <div class="data-value">${mvrDetails.dob}</div>
+            </div>
+        `;
+    }
+
+    return html;
+}
+
+function renderInsuranceDetails(insuranceDetails) {
+    let html = "";
+
+    if (insuranceDetails.company_name) {
+        html += `
+            <div class="data-item">
+                <div class="data-label">Insurance Company</div>
+                <div class="data-value">${insuranceDetails.company_name}</div>
+            </div>
+        `;
+    }
+
+    if (insuranceDetails.policy_number) {
+        html += `
+            <div class="data-item">
+                <div class="data-label">Policy Number</div>
+                <div class="data-value insurance-policy">${insuranceDetails.policy_number}</div>
+            </div>
+        `;
+    }
+
+    if (insuranceDetails.effective_date) {
+        html += `
+            <div class="data-item">
+                <div class="data-label">Effective Date</div>
+                <div class="data-value">${insuranceDetails.effective_date}</div>
+            </div>
+        `;
+    }
+
+    if (insuranceDetails.expiration_date) {
+        html += `
+            <div class="data-item">
+                <div class="data-label">Expiration Date</div>
+                <div class="data-value">${insuranceDetails.expiration_date}</div>
+            </div>
+        `;
+    }
+
+    if (insuranceDetails.insured_name) {
+        html += `
+            <div class="data-item">
+                <div class="data-label">Insured Name</div>
+                <div class="data-value">${insuranceDetails.insured_name}</div>
+            </div>
+        `;
+    }
+
+    if (insuranceDetails.vehicle_info) {
+        html += `
+            <div class="data-item">
+                <div class="data-label">Vehicle Info</div>
+                <div class="data-value">${insuranceDetails.vehicle_info}</div>
+            </div>
+        `;
+    }
+
+    return html;
 }
 
 function analyzeAnother() {
