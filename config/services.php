@@ -43,5 +43,10 @@ return [
         'webhook_secret' => env('PERSONA_WEBHOOK_SECRET'),
     ],
 
+    'checkr' => [
+        'api_key' => env('CHECKR_API_KEY'),
+        'staging' => env('CHECKR_STAGING', true),
+        'webhook_secret' => env('CHECKR_WEBHOOK_SECRET'),
+    ],
 
 ];

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Services\InsuranceCardParser;
 use App\Services\MvrParserService;
+use App\Services\CheckrService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Services\VisionService;
@@ -17,12 +18,14 @@ class CarImageController extends Controller
     protected $vision;
     protected $insuranceCardParser;
     protected $mvrParserService;
+    protected $checkrService;
 
-    public function __construct(VisionService $vision, InsuranceCardParser $insuranceCardParser, MvrParserService $mvrParserService)
+    public function __construct(VisionService $vision, InsuranceCardParser $insuranceCardParser, MvrParserService $mvrParserService, CheckrService $checkrService)
     {
         $this->vision = $vision;
         $this->insuranceCardParser = $insuranceCardParser;
         $this->mvrParserService = $mvrParserService;
+        $this->checkrService = $checkrService;
     }
 
     public function index()

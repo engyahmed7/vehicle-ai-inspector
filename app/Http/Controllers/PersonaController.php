@@ -88,28 +88,85 @@ class PersonaController extends Controller
     public function webhook(Request $request)
     {
         $payload = $request->all();
-        Log::info('Persona webhook received', $payload);
+
+        Log::info('Persona webhook received', [
+            'event_name' => $payload['data']['type'] ?? 'unknown',
+            'inquiry_id' => $payload['data']['id'] ?? null,
+            'status' => $payload['data']['attributes']['status'] ?? null,
+            'full_payload' => $payload
+        ]);
 
         if (!$this->verifyWebhook($request)) {
+            Log::error('Persona webhook signature verification failed', [
+                'headers' => $request->headers->all(),
+                'payload_preview' => substr($request->getContent(), 0, 200)
+            ]);
             return response()->json(['error' => 'Invalid webhook signature'], 400);
         }
 
-        $inquiryId = $payload['data']['id'] ?? null;
-        $status = $payload['data']['attributes']['status'] ?? null;
+        $eventType = $payload['data']['type'] ?? null;
+
+        if ($eventType === 'inquiry') {
+            $inquiryId = $payload['data']['id'] ?? null;
+            $status = $payload['data']['attributes']['status'] ?? null;
+        } elseif ($eventType === 'event') {
+            $eventName = $payload['data']['attributes']['name'] ?? null;
+
+            if (strpos($eventName, 'inquiry.') === 0) {
+                $inquiryData = $payload['data']['attributes']['payload']['data'] ?? null;
+                $inquiryId = $inquiryData['id'] ?? null;
+                $status = $inquiryData['attributes']['status'] ?? null;
+            } else {
+                return response()->json(['success' => true, 'message' => 'Verification event ignored']);
+            }
+        } else {
+            $inquiryId = null;
+            $status = null;
+        }
 
         if ($inquiryId && $status) {
             $user = \App\Models\User::where('persona_inquiry_id', $inquiryId)->first();
 
             if ($user) {
-                $kycStatus = $this->mapPersonaStatusToKyc($status);
-                $updateData = ['kyc_status' => $kycStatus];
+                $currentKycStatus = $user->kyc_status;
+                $newKycStatus = $this->mapPersonaStatusToKyc($status);
 
-                if (in_array($kycStatus, ['approved', 'rejected'])) {
-                    $updateData['kyc_completed_at'] = now();
+                if ($currentKycStatus !== $newKycStatus) {
+                    $updateData = ['kyc_status' => $newKycStatus];
+
+                    if (in_array($newKycStatus, ['approved', 'rejected'])) {
+                        $updateData['kyc_completed_at'] = now();
+                    }
+
+                    $user->update($updateData);
+
+                    Log::info('User KYC status updated via webhook', [
+                        'user_id' => $user->id,
+                        'inquiry_id' => $inquiryId,
+                        'old_status' => $currentKycStatus,
+                        'new_status' => $newKycStatus,
+                        'persona_status' => $status
+                    ]);
+                } else {
+                    Log::info('Webhook received but status unchanged', [
+                        'user_id' => $user->id,
+                        'inquiry_id' => $inquiryId,
+                        'status' => $newKycStatus,
+                        'persona_status' => $status
+                    ]);
                 }
-
-                $user->update($updateData);
+            } else {
+                Log::warning('Webhook received for unknown inquiry', [
+                    'inquiry_id' => $inquiryId,
+                    'status' => $status
+                ]);
             }
+        } else {
+            Log::info('Webhook ignored - no inquiry data found', [
+                'event_type' => $eventType,
+                'has_inquiry_id' => !empty($inquiryId),
+                'has_status' => !empty($status)
+            ]);
         }
 
         return response()->json(['success' => true]);

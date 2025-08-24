@@ -3,13 +3,14 @@
 use App\Http\Controllers\CarImageController;
 use App\Http\Controllers\CarListingController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\MvrController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Broadcast;
 
 Route::get('/', function () {
-    return redirect()->route('upload.index');
+    return redirect()->route('dashboard');
 });
 
 Route::get('/upload-car', function () {
@@ -54,5 +55,15 @@ Route::get('/persona/status', [PersonaController::class, 'getCurrentStatus'])->m
 Route::get('/persona/verification-url', [PersonaController::class, 'getVerificationUrl'])->middleware('auth');
 Route::post('/persona/webhook', [PersonaController::class, 'webhook']);
 
+Route::middleware('auth')->group(function () {
+    Route::get('/mvr', [MvrController::class, 'index'])->name('mvr.index');
+    Route::post('/mvr/check', [MvrController::class, 'createMvrCheck'])->name('mvr.check');
+    Route::get('/mvr/results/{reportId}', [MvrController::class, 'getMvrResults'])->name('mvr.results');
+    Route::get('/mvr/candidate/{candidateId}', [MvrController::class, 'getCandidate'])->name('mvr.candidate');
+    Route::get('/mvr/candidate/{candidateId}/mvrs', [MvrController::class, 'listCandidateMvrs'])->name('mvr.candidate.mvrs');
+    Route::post('/mvr/test', [MvrController::class, 'testMvr'])->name('mvr.test');
+});
+
+Route::post('/mvr/webhook', [MvrController::class, 'webhook'])->name('mvr.webhook');
 
 require __DIR__ . '/auth.php';
