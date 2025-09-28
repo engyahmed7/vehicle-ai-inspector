@@ -1,0 +1,34 @@
+{
+    "success": true,
+    "widgets": [
+        {
+            "widget_id": "ecbfbcac-ad4f-4485-962f-289882e19b2b",
+            "intro_title": "Objects / RNTLS uses Canopy Connect to verify your insurance",
+            "public_alias": "objects-rntls",
+            "company_name": "Objects / RNTLS",
+            "success_message": "A copy of your insurance information is being securely sent to Objects / RNTLS",
+            "on_success_redirect_url": null,
+            "is_sandbox": true,
+            "brand_color_hex": "405DFF",
+            "cobranded_intro_screen": false,
+            "public_url": "https://app.usecanopy.com/c/objects-rntls",
+            "logo_src": "https://app.usecanopy.com/logos/canopy-connect-white-blue.svg",
+            "agents": [
+                {
+                    "agent_id": "312d4abd-b68c-47be-a1c3-64581ab68fe4",
+                    "email": "reem@objects.ws",
+                    "first_name": "Reem",
+                    "last_name": "Sakoury",
+                    "role": "ADMIN"
+                },
+                {
+                    "agent_id": "6553db9c-565b-4e4a-913f-0e407251e717",
+                    "email": "igsr.azzaali@gmail.com",
+                    "first_name": "Azza",
+                    "last_name": "Ali",
+                    "role": "ADMIN"
+                }
+            ]
+        }
+    ]
+}

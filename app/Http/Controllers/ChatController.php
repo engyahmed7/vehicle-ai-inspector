@@ -36,9 +36,9 @@ class ChatController extends Controller
         $user = Auth::user();
 
         Conversation::where('id', $conversationId)
-            ->where(function($query) use ($user) {
+            ->where(function ($query) use ($user) {
                 $query->where('car_owner_id', $user->id)
-                      ->orWhere('customer_id', $user->id);
+                    ->orWhere('customer_id', $user->id);
             })
             ->firstOrFail();
 
@@ -71,9 +71,9 @@ class ChatController extends Controller
         $user = Auth::user();
 
         $conversation = Conversation::where('id', $conversationId)
-            ->where(function($query) use ($user) {
+            ->where(function ($query) use ($user) {
                 $query->where('car_owner_id', $user->id)
-                      ->orWhere('customer_id', $user->id);
+                    ->orWhere('customer_id', $user->id);
             })
             ->firstOrFail();
 

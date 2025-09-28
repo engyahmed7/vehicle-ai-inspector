@@ -209,7 +209,7 @@ function renderResults(data) {
 
 function downloadReport() {}
 
-function renderMvrDetails(mvrDetails) {
+function renderMvrDetails(mvrDetails) {renderResults
     let html = "";
 
     if (mvrDetails.driver_name) {

@@ -31,11 +31,11 @@ class PersonaController extends Controller
                 'kyc_status' => 'pending'
             ]);
 
-            Log::info('Persona inquiry created', [
-                'user_id' => $user->id,
-                'inquiry_id' => $response['data']['id'],
-                'status' => 'pending'
-            ]);
+            // Log::info('Persona inquiry created', [
+            //     'user_id' => $user->id,
+            //     'inquiry_id' => $response['data']['id'],
+            //     'status' => 'pending'
+            // ]);
         }
 
         return response()->json($response);
@@ -45,10 +45,10 @@ class PersonaController extends Controller
     {
         $response = $this->persona->getInquiryStatus($id);
 
-        Log::info('Checking inquiry status', [
-            'inquiry_id' => $id,
-            'persona_response' => $response
-        ]);
+        // Log::info('Checking inquiry status', [
+        //     'inquiry_id' => $id,
+        //     'persona_response' => $response
+        // ]);
 
         if (Auth::check() && Auth::user()->persona_inquiry_id === $id) {
             $user = Auth::user();
@@ -63,11 +63,11 @@ class PersonaController extends Controller
 
             $user->update($updateData);
 
-            Log::info('User KYC status updated', [
-                'user_id' => $user->id,
-                'persona_status' => $status,
-                'kyc_status' => $kycStatus
-            ]);
+            // Log::info('User KYC status updated', [
+            //     'user_id' => $user->id,
+            //     'persona_status' => $status,
+            //     'kyc_status' => $kycStatus
+            // ]);
         }
 
         return response()->json($response);
@@ -140,33 +140,33 @@ class PersonaController extends Controller
 
                     $user->update($updateData);
 
-                    Log::info('User KYC status updated via webhook', [
-                        'user_id' => $user->id,
-                        'inquiry_id' => $inquiryId,
-                        'old_status' => $currentKycStatus,
-                        'new_status' => $newKycStatus,
-                        'persona_status' => $status
-                    ]);
+                    // Log::info('User KYC status updated via webhook', [
+                    //     'user_id' => $user->id,
+                    //     'inquiry_id' => $inquiryId,
+                    //     'old_status' => $currentKycStatus,
+                    //     'new_status' => $newKycStatus,
+                    //     'persona_status' => $status
+                    // ]);
                 } else {
-                    Log::info('Webhook received but status unchanged', [
-                        'user_id' => $user->id,
-                        'inquiry_id' => $inquiryId,
-                        'status' => $newKycStatus,
-                        'persona_status' => $status
-                    ]);
+                    // Log::info('Webhook received but status unchanged', [
+                    //     'user_id' => $user->id,
+                    //     'inquiry_id' => $inquiryId,
+                    //     'status' => $newKycStatus,
+                    //     'persona_status' => $status
+                    // ]);
                 }
             } else {
-                Log::warning('Webhook received for unknown inquiry', [
-                    'inquiry_id' => $inquiryId,
-                    'status' => $status
-                ]);
+                // Log::warning('Webhook received for unknown inquiry', [
+                //     'inquiry_id' => $inquiryId,
+                //     'status' => $status
+                // ]);
             }
         } else {
-            Log::info('Webhook ignored - no inquiry data found', [
-                'event_type' => $eventType,
-                'has_inquiry_id' => !empty($inquiryId),
-                'has_status' => !empty($status)
-            ]);
+            // Log::info('Webhook ignored - no inquiry data found', [
+            //     'event_type' => $eventType,
+            //     'has_inquiry_id' => !empty($inquiryId),
+            //     'has_status' => !empty($status)
+            // ]);
         }
 
         return response()->json(['success' => true]);

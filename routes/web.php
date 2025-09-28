@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InsuranceController;
 use App\Http\Controllers\CarImageController;
 use App\Http\Controllers\CarListingController;
 use App\Http\Controllers\ChatController;
@@ -68,5 +69,21 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('/mvr/webhook', [MvrController::class, 'webhook'])->name('mvr.webhook');
+
+
+
+
+// Route::post('/canopy/widget', [InsuranceController::class, 'createWidget']);
+// Route::post('/canopy/consent', [InsuranceController::class, 'consentAndConnect']);
+// Route::get('/canopy/insurance/{pullId}', [InsuranceController::class, 'getInsuranceDetails']);
+
+
+
+Route::get('/insurance-form', function () {
+    return view('insurance-form');
+});
+Route::post('/insurance/consent', [InsuranceController::class, 'consentAndConnect']);
+Route::get('/insurance/{pullId}', [InsuranceController::class, 'getInsuranceDetails']);
+Route::post('/webhooks/canopy', [InsuranceController::class, 'handle']);
 
 require __DIR__ . '/auth.php';

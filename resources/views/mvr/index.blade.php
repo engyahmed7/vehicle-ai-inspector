@@ -205,11 +205,11 @@
                             <div class="mt-2 text-sm text-green-700">
                                 <p><strong>Message:</strong> ${data.message}</p>
                                 ${data.data ? `
-                                        <p><strong>Candidate ID:</strong> ${data.data.candidate_id || 'N/A'}</p>
-                                        <p><strong>MVR ID:</strong> ${data.data.mvr_id || 'N/A'}</p>
-                                        <p><strong>Status:</strong> ${data.data.status || 'N/A'}</p>
-                                        <p><strong>Estimated Completion:</strong> ${data.data.estimated_completion || 'N/A'}</p>
-                                    ` : ''}
+                                            <p><strong>Candidate ID:</strong> ${data.data.candidate_id || 'N/A'}</p>
+                                            <p><strong>MVR ID:</strong> ${data.data.mvr_id || 'N/A'}</p>
+                                            <p><strong>Status:</strong> ${data.data.status || 'N/A'}</p>
+                                            <p><strong>Estimated Completion:</strong> ${data.data.estimated_completion || 'N/A'}</p>
+                                        ` : ''}
                             </div>
                         </div>
                     </div>

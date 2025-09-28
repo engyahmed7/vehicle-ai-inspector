@@ -103,9 +103,6 @@ class CarImageController extends Controller
                 if ($type === 'mvr') {
                     $data[$type]['mvr_details'] = $this->mvrParserService->extractMvrDetails($fullText);
                 }
-
-
-
             } catch (\Exception $e) {
                 $data[$type]['error'] = 'Processing error: ' . $e->getMessage();
             }
@@ -380,15 +377,15 @@ class CarImageController extends Controller
     public function getUserCars()
     {
         $cars = Car::where('user_id', Auth::id())
-                  ->orderBy('created_at', 'desc')
-                  ->get();
+            ->orderBy('created_at', 'desc')
+            ->get();
         return response()->json($cars);
     }
 
     public function showResults($carId)
     {
         $car = Car::where('user_id', Auth::id())
-                  ->findOrFail($carId);
+            ->findOrFail($carId);
 
         return view('upload-results', [
             'data' => $car->images_data,

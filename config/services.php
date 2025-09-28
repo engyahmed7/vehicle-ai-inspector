@@ -49,4 +49,11 @@ return [
         'webhook_secret' => env('CHECKR_WEBHOOK_SECRET'),
     ],
 
+    'canopy' => [
+        'base_url' => env('CANOPY_BASE_URL', 'https://app.usecanopy.com/api/v1.0.0'),
+        'client_key' => env('CANOPY_API_CLIENT_KEY'),
+        'secret_key' => env('CANOPY_API_SECRET_KEY'),
+        'team_id' => env('CANOPY_TEAM_ID'),
+    ],
+
 ];
