@@ -80,4 +80,12 @@ class InsuranceController extends Controller
             'expiry_date'   => $autoPolicy['expiry_date'] ?? null,
         ]);
     }
+
+    public function handle(Request $request)
+    {
+        Log::info('Received Canopy webhook: ', $request->all());
+
+
+        return response()->json(['status' => 'success']);
+    }
 }

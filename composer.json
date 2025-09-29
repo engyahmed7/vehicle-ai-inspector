@@ -12,6 +12,7 @@
         "guzzlehttp/guzzle": "^7.9",
         "intervention/image": "^3.11",
         "laravel/framework": "^12.0",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
         "livewire/livewire": "^3.6",
         "prism-php/prism": "^0.85.0",
