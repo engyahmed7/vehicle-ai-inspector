@@ -37,7 +37,7 @@ class Chatbot extends Component
 
         $response = Prism::text()
             ->using(Provider::Groq, 'llama-3.1-8b-instant')
-            ->withSystemPrompt('You are a helpful FAQ assistant.')
+            ->withSystemPrompt('You are a helpful FAQ assistant for the RNTLS platform, focusing on rental services and car insurance.')
             ->withMessages($conversation)
             ->asText();
 

@@ -20,16 +20,27 @@
                         {{ Auth::user()->role === 'car_owner' ? __('My Vehicles') : __('Browse Cars') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('chat')" :active="request()->routeIs('chat')">
-                        {{ __('Chat') }}
-                    </x-nav-link>
-
+                    @if (auth()->user()->can('ManageChats:Role'))
+                        <x-nav-link :href="route('chat')" :active="request()->routeIs('chat')">
+                            {{ __('Chat') }}
+                        </x-nav-link>
+                    @endif
                     <x-nav-link :href="route('upload.index')" :active="request()->routeIs('upload.*')">
                         {{ __('Vehicle Analysis') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('kyc.verify')" :active="request()->routeIs('kyc')">
-                        {{ __('Identity Verification') }}
-                    </x-nav-link>
+                    @php
+                        // $permissions = auth()->user()->getAllPermissions()->pluck('name')->toArray();
+                        // dd($permissions);
+
+                        // dd(auth()->user()->getRoleNames());
+
+                    @endphp
+                    @if (auth()->user()->can('ManageKyc:Role'))
+                        <x-nav-link :href="route('kyc.verify')" :active="request()->routeIs('kyc')">
+                            {{ __('Identity Verification') }}
+                        </x-nav-link>
+                    @endif
+
                     <x-nav-link :href="route('mvr.index')" :active="request()->routeIs('mvr.*')">
                         {{ __('MVR Check') }}
                     </x-nav-link>
